@@ -21,9 +21,15 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "AdventOfCode2020",
-            dependencies: [.product(name: "Algorithms", package: "swift-algorithms")]),
+            dependencies: [.product(name: "Algorithms", package: "swift-algorithms")],
+            resources: [
+                .process("Resources")
+            ]),
         .testTarget(
             name: "AdventOfCode2020Tests",
-            dependencies: ["AdventOfCode2020"]),
+            dependencies: ["AdventOfCode2020"],
+            resources: [
+                .process("Resources")
+            ]),
     ]
 )

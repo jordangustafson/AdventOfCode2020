@@ -36,8 +36,8 @@ public struct DataParser<T: StringInitable> {
 
     /// Parse where input values are separated by newlines.
     ///
-    public func parseLines(fileName: String) throws -> [T] {
-        return try loadDataString(from: fileName)
+    public func parseLines(fileName: String, bundle: Bundle = Bundle.main) throws -> [T] {
+        return try loadDataString(from: fileName, bundle: bundle)
             .split(separator: "\n")
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             .compactMap { T($0) }
@@ -67,8 +67,8 @@ public struct DataParser<T: StringInitable> {
 
     /// Attempt to load the input file from the Resources folder.
     ///
-    private func loadDataString(from fileName: String) throws -> String {
-        guard let dataURL = Bundle.main.url(forResource: fileName, withExtension: nil) else {
+    private func loadDataString(from fileName: String, bundle: Bundle = Bundle.main) throws -> String {
+        guard let dataURL = bundle.url(forResource: fileName, withExtension: nil) else {
             throw Error.unableToReadInput
         }
         return try String(contentsOf: dataURL)
