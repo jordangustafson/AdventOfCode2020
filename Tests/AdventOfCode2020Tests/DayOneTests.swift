@@ -52,5 +52,6 @@ final class AdventOfCode2020Tests: XCTestCase {
 
     static var allTests = [
         ("testExampleExpenseReport", testExampleExpenseReport),
+        ("testMyExpenseReport", testMyExpenseReport),
     ]
 }
